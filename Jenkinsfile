@@ -41,8 +41,8 @@ pipeline {
         stage('Deploy to Minikube') {
             steps {
                 sh '''
-                kubectl apply -f deployment.yaml
-                kubectl apply -f service.yaml
+                kubectl apply -f k8s/deployment.yml
+                kubectl apply -f k8s/service.yml
                 kubectl set image deployment/my-k8s-app my-k8s-app=$IMAGE_NAME:$TAG
                 kubectl rollout status deployment/my-k8s-app
                 '''
