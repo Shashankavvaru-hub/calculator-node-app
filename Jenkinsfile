@@ -41,8 +41,7 @@ pipeline {
         stage('Deploy to Minikube') {
             steps {
                 sh '''
-                kubectl set image deployment/my-k8s-app \
-                node-container=$IMAGE_NAME:$TAG
+                kubectl set image deployment/my-k8s-app my-k8s-app=avvarushashank/my-k8s-app:$TAG
                 '''
             }
         }
