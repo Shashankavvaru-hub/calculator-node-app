@@ -38,6 +38,19 @@ pipeline {
             }
         }
 
+        stage('Start Minikube (if not running)') {
+            steps {
+                sh '''
+                if ! minikube status | grep -q "Running"; then
+                    echo "Minikube is not running. Starting Minikube..."
+                    minikube start
+                else
+                    echo "Minikube is already running."
+                fi
+                '''
+            }
+        }
+
         stage('Deploy to Minikube') {
             steps {
                 sh '''
