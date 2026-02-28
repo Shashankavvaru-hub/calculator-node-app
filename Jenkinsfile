@@ -14,6 +14,12 @@ pipeline {
             }
         }
 
+        stage('Run Tests') {
+            steps {
+                sh 'npm test'
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $IMAGE_NAME:$TAG .'
